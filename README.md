@@ -5,8 +5,8 @@ ps.uia
 
 How to use
 ------------
-The following example creates the "calc.exe" process and click the Number "1" button on the window. 
-
+The following example creates the "calc.exe" process and click the Number "1" button on the window.  
+You also can find the full sample in the "sample" folder.
 ```ps1
 # import the ps.uia module
 Import-Module ps.uia
@@ -24,10 +24,11 @@ $btn = Find-UIAFirstElement -element $aut -className "Button" -name "1"
 $btn.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
 ```
 
-You also can find the full sample in the "sample" folder.
+
 
 Installation
 ------------
-Option 1: copy the "Modules\ps.uia" to your Powershell modules folder
+Option 1: copy the "Modules\ps.uia" to your Powershell modules folder. 
+
 Option 2: Add the "Mdodules" path to your $env:PSModulePath environment. 
 
