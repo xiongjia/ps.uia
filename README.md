@@ -25,7 +25,7 @@ $btn.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
 ``` 
 
 You also can find another sample script in the "sample" folder. 
-Below are the command lines for test this the "calc.ps1" script.  
+Below are the command lines for test this sample script.  
 ```ps1
 Import-Module ps.uia
 .\sample\calc.ps1 
