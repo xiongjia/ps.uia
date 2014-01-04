@@ -12,7 +12,7 @@
 # Launch the calc.exe & sleep 10 seconds for wait the process start
 Write-Host "Launching the AUT ( calc.exe )"
 $autProc = Start-Process calc -PassThru
-Start-Sleep -s 10
+Start-Sleep -s 5
 
 
 $aut = Get-UIAProcRootElement -processId $autProc.Id

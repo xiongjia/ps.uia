@@ -1,6 +1,11 @@
 # ps.uia.psm1
 # Root module for module 'ps.uia'
 
+# Load MS UIAutomation assemblies
+Add-Type -AssemblyName UIAutomationClient
+Add-Type -AssemblyName UIAutomationTypes
+Add-Type -AssemblyName UIAutomationProvider
+Add-Type -AssemblyName UIAutomationClientsideProviders
 $script:uia_init = $false
 
 function PSUIA-Init
@@ -10,14 +15,10 @@ function PSUIA-Init
         return
     }
     $script:uia_init = $true
-    # Load MS UIAutomation assemblies
-    [void][System.Reflection.Assembly]::LoadWithPartialName("UIAutomationClient")
-    [void][System.Reflection.Assembly]::LoadWithPartialName("UIAutomationTypes")
-    [void][System.Reflection.Assembly]::LoadWithPartialName("UIAutomationProvider")
-    [void][System.Reflection.Assembly]::LoadWithPartialName("UIAutomationClientsideProviders")
     # Register client side provider
-    $client = [System.Reflection.Assembly]::LoadWithPartialName("UIAutomationClientsideProviders")
-    [Windows.Automation.ClientSettings]::RegisterClientSideProviderAssembly($client.GetName())
+    [Windows.Automation.AutomationElement]::RootElement
+    $client = [System.Reflection.Assembly]::Load("UIAutomationClientsideProviders, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35")
+    [System.Windows.Automation.ClientSettings]::RegisterClientSideProviderAssembly($client.GetName())
 }
 PSUIA-Init
 

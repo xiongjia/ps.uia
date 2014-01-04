@@ -10,7 +10,6 @@ PowerShellVersion='3.0'
 CLRVersion='4.0'
 RootModule='ps.uia.psm1'
 FunctionsToExport='Get-UIAProcRootElement', 'Find-UIAFirstElement'
-HelpInfoUri='https://github.com/xiongjia/ps.uia'
 
 }
 
