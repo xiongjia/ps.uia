@@ -22,8 +22,9 @@ $btn = Find-UIAFirstElement -element $aut -className "Button" -name "1"
 
 # click it
 $btn.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
-```
-You also can find another full sample in the "sample" folder. 
+``` 
+
+You also can find another sample script in the "sample" folder. 
 Below is the command lines for test this the "calc.ps1" script.  
 ```ps1
 Import-Module ps.uia
