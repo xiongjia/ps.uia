@@ -6,7 +6,7 @@ ps.uia
 How to use
 ------------
 The following example creates the "calc.exe" process and click the Number "1" button on the window.  
-You also can find the full sample in the "sample" folder.
+
 ```ps1
 # import the ps.uia module
 Import-Module ps.uia
@@ -23,8 +23,12 @@ $btn = Find-UIAFirstElement -element $aut -className "Button" -name "1"
 # click it
 $btn.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
 ```
-
-
+You also can find another full sample in the "sample" folder. 
+Below is the command lines for test this the "calc.ps1" script.  
+```ps1
+Import-Module ps.uia
+.\sample\calc.ps1 
+```
 
 Installation
 ------------
