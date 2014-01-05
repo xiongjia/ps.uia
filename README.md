@@ -33,7 +33,7 @@ Import-Module ps.uia
 
 Installation
 ------------
-Option 1: copy the "Modules\ps.uia" to your Powershell modules folder. 
+Option 1: copy the "Modules\ps.uia" folder to your Powershell module folder. 
 ```ps1
 git clone https://github.com/xiongjia/ps.uia.git 
 cd .\ps.uia 
