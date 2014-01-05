@@ -34,6 +34,17 @@ Import-Module ps.uia
 Installation
 ------------
 Option 1: copy the "Modules\ps.uia" to your Powershell modules folder. 
+```ps1
+git clone https://github.com/xiongjia/ps.uia.git 
+cd .\ps.uia 
+$myPSModulePath = [System.Environment]::GetFolderPath("mydocuments") + "\WindowsPowerShell\Modules" 
+Copy-Item .\Modules\ps.uia $myPSModulePath\ps.uia -Recurse 
+```  
 
 Option 2: Add the "Mdodules" path to your $env:PSModulePath environment. 
+```ps1
+git clone https://github.com/xiongjia/ps.uia.git 
+cd .\ps.uia 
+$env:PSModulePath = $env:PSModulePath + ";" + $pwd.Path + "\Modules"
+``` 
 
