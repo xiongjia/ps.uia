@@ -8,8 +8,14 @@ Author = 'lexiongjia@gmail.com'
 ModuleVersion = '1.0.0.0'
 PowerShellVersion='3.0'
 CLRVersion='4.0'
-RootModule='ps.uia.psm1'
-FunctionsToExport='Get-UIAProcRootElement', 'Find-UIAFirstElement'
+
+FunctionsToExport = '*'
+CmdletsToExport = '*'
+VariablesToExport = '*'
+AliasesToExport = '*'
+
+ModuleToProcess = 'ps.uia.psm1'
+FileList = 'ps.uia.psm1', 'ps.uia.psd1'
 
 }
 
