@@ -1,6 +1,7 @@
 # ps.uia.get-root-element.ps1
 # 
 
+. $PSScriptRoot\misc.ps1
 
 Function Get-UIARootElement
 {
