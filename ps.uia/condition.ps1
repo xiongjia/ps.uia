@@ -21,6 +21,7 @@ Function New-UIAAndCondition
         {
            Write-Error -Message "Invalid Property Conditions"
                        -Category InvalidArgument
+                       -ErrorAction Stop 
         }
     }
 
