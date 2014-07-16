@@ -31,7 +31,9 @@ Function New-UIAPropertyCondition
             }
             Default
             {
-				Write-Error "Invalid Property Name $PropertyName" -ErrorAction Stop
+				Write-Error "Invalid Property Name $PropertyName"
+                    -Category InvalidArgument
+                    -ErrorAction Stop
             }
         }
         $WUIAPropCond = New-Object Windows.Automation.PropertyCondition(

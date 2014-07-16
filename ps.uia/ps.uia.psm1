@@ -20,12 +20,11 @@ Write-Debug "Loads ps.uia script files"
 
 # export functions
 Write-Debug "Exports ps.uia functions"
-Export-ModuleMember -Function New-UIAPropertyConditions -Alias New-UIAPropertyConditions
-Export-ModuleMember -Function New-UIAAndCondition -Alias New-UIAAndCondition
 
 # property condition
 Export-ModuleMember -Function New-UIAPropertyCondition
 Export-ModuleMember -Function New-UIAPropertyConditionArray
 
-Export-ModuleMember -Function Find-UIAElements -Alias Find-UIAElements
+# condition
+Export-ModuleMember -Function New-UIAAndCondition
 
