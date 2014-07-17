@@ -31,8 +31,8 @@ Function Find-UIAFirstElement
         [hashTable]$ParentElement = $null,
 		[parameter(Mandatory = $true)]
         [hashTable]$Condition = $null,
-        [ValidateSet("Children", "Parent", "Descendants")]
-        [string]$TreeScope = "Children"
+        [ValidateSet("Element", "Children", "Descendants", "Subtree")]
+        [string]$TreeScope = "Subtree"
     )
 
     Begin
@@ -44,7 +44,7 @@ Function Find-UIAFirstElement
             $ParentElement = Get-UIARootElement
         }
     }
-
+ 
     Process
     {
         $UIATreeScope = Get-UIATreeScope -TreeScope $TreeScope
@@ -52,6 +52,11 @@ Function Find-UIAFirstElement
             $UIATreeScope.Raw.Value,
             $Condition.Raw.Value
         )
+        if ($UIAElement -eq $null)
+        {
+            Write-Error "UI automation cannot find an element."
+            return $null
+        }
         Return @{
             "Raw" = [ref]$UIAElement;
             "Tag" = "UIAElement"

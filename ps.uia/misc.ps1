@@ -37,8 +37,8 @@ Function Initialize-UIAutomation
 Function Get-UIATreeScope
 {
     Param(
-        [ValidateSet("Children", "Parent", "Descendants")]
-        [string]$TreeScope = "Children"
+        [ValidateSet("Element", "Children", "Descendants", "Subtree")]
+        [string]$TreeScope = "Subtree"
     )
 
     Begin
@@ -48,17 +48,13 @@ Function Get-UIATreeScope
 
     Process
     {
-        $UIATreeScope = $null
+        $Raw = $null
         Switch ($TreeScope)
         {
-            "Children"
-            {
-                $UIATreeScope = [Windows.Automation.TreeScope]::Children
-            }
-            "Descendants"
-            {
-                $UIATreeScope = [Windows.Automation.TreeScope]::Descendants
-            }
+            "Element"     { $Raw = [Windows.Automation.TreeScope]::Element }
+            "Children"    { $Raw = [Windows.Automation.TreeScope]::Children }
+            "Descendants" { $Raw = [Windows.Automation.TreeScope]::Descendants }
+            "Subtree"     { $Raw = [Windows.Automation.TreeScope]::Subtree }
             Default
             {
                 Write-Error "Invalid TreeScope $TreeScope" `
@@ -67,7 +63,7 @@ Function Get-UIATreeScope
             }
         }
         Return @{
-            "Raw" = [ref]$UIATreeScope;
+            "Raw" = [ref]$Raw;
             "Tag" = "TreeScope"
         }
     }
