@@ -23,16 +23,18 @@ Function New-UIAPropertyCondition
         {
             "ProcessId"
             {
-                $WUIAProp = [Windows.Automation.AutomationElement]::ProcessIdProperty
+                $WUIAProp = `
+                    [Windows.Automation.AutomationElement]::ProcessIdProperty
             }
             "Name"
             {
-                $WUIAProp = [Windows.Automation.AutomationElement]::NameProperty
+                $WUIAProp = `
+                    [Windows.Automation.AutomationElement]::NameProperty
             }
             Default
             {
-				Write-Error "Invalid Property Name $PropertyName"
-                    -Category InvalidArgument
+				Write-Error "Invalid Property Name $PropertyName" `
+                    -Category InvalidArgument `
                     -ErrorAction Stop
             }
         }
@@ -73,7 +75,8 @@ Function New-UIAPropertyConditionArray
             {
                 $PropVal = $Properties.$Key
                 Write-Debug "Create New Condition $Key = $PropVal"
-                $CondItem = New-UIAPropertyCondition -PropertyName $Key -PropertyValue $PropVal
+                $CondItem = New-UIAPropertyCondition -PropertyName $Key `
+                    -PropertyValue $PropVal
                 $CondArray += $CondItem
             }
         }

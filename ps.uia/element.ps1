@@ -1,5 +1,7 @@
 # element.ps1
 
+. $PSScriptRoot\misc.ps1
+
 Function Get-UIARootElement
 {
     Begin
@@ -11,8 +13,8 @@ Function Get-UIARootElement
     {
         $UIARootElement = [Windows.Automation.AutomationElement]::RootElement
         $RootElement = @{
-            "Tag"="UIARoot";
-            "Element"=[ref]$UIARootElement
+            "Tag" = "UIARootElement";
+            "Raw" = [ref]$UIARootElement
         }
         Return $RootElement
     }
@@ -23,11 +25,14 @@ Function Get-UIARootElement
     }
 }
 
-Function Find-UIAElements
+Function Find-UIAFirstElement
 {
     Param(
-        [HashTable]$ParentElement = $null,
-        [HashTable]$Condition = $null
+        [hashTable]$ParentElement = $null,
+		[parameter(Mandatory = $true)]
+        [hashTable]$Condition = $null,
+        [ValidateSet("Children", "Parent", "Descendants")]
+        [string]$TreeScope = "Children"
     )
 
     Begin
@@ -42,11 +47,15 @@ Function Find-UIAElements
 
     Process
     {
-        $Element = $ParentElement.Element.Value.FindFirst(
-            [Windows.Automation.TreeScope]::Children,
-            $Condition.Condition.Value
+        $UIATreeScope = Get-UIATreeScope -TreeScope $TreeScope
+        $UIAElement = $ParentElement.Raw.Value.FindFirst(
+            $UIATreeScope.Raw.Value,
+            $Condition.Raw.Value
         )
-        Return $Element
+        Return @{
+            "Raw" = [ref]$UIAElement;
+            "Tag" = "UIAElement"
+        }
     }
 
     End

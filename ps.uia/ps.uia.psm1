@@ -14,17 +14,21 @@ if ($script:uia_init -eq $false)
 
 # Load our .ps1 files
 Write-Debug "Loads ps.uia script files"
-. $PSScriptRoot\element.ps1
 . $PSScriptRoot\property_condition.ps1
 . $PSScriptRoot\condition.ps1
+. $PSScriptRoot\element.ps1
+. $PSScriptRoot\pattern.ps1
 
 # export functions
 Write-Debug "Exports ps.uia functions"
 
-# property condition
+# conditions
 Export-ModuleMember -Function New-UIAPropertyCondition
 Export-ModuleMember -Function New-UIAPropertyConditionArray
-
-# condition
 Export-ModuleMember -Function New-UIAAndCondition
+# element
+Export-ModuleMember -Function Get-UIARootElement
+Export-ModuleMember -Function Find-UIAFirstElement
+# pattern
+Export-ModuleMember -Function Get-UIAElementPattern
 
