@@ -1,10 +1,11 @@
 # property_condition.ps1
 
+. $PSScriptRoot\misc.ps1
+
 Function New-UIAPropertyCondition
 {
     Param(
         [parameter(Mandatory = $true)]
-        [ValidateSet("ProcessId", "Name")]
         [string]$PropertyName,
         [parameter(Mandatory = $true)]
         [System.Object]$PropertyValue = $null
@@ -14,34 +15,15 @@ Function New-UIAPropertyCondition
     {
         Write-Debug "[begin] New UIA Property Condition"
         Write-Debug "PropName: $PropertyName; PropVal: $PropertyValue"
+        $UIAProp = Get-UIAProperty -Property $PropertyName
     }
 
     Process
     {
-        $WUIAProp = $null
-        Switch ($PropertyName)
-        {
-            "ProcessId"
-            {
-                $WUIAProp = `
-                    [Windows.Automation.AutomationElement]::ProcessIdProperty
-            }
-            "Name"
-            {
-                $WUIAProp = `
-                    [Windows.Automation.AutomationElement]::NameProperty
-            }
-            Default
-            {
-				Write-Error "Invalid Property Name $PropertyName" `
-                    -Category InvalidArgument `
-                    -ErrorAction Stop
-            }
-        }
-        $WUIAPropCond = New-Object Windows.Automation.PropertyCondition(
-            $WUIAProp, $PropertyValue)
+        $UIAPropCond = New-Object Windows.Automation.PropertyCondition(
+            $UIAProp.Raw.Value, $PropertyValue)
         Return @{
-            "Raw" = [ref]$WUIAPropCond;
+            "Raw" = [ref]$UIAPropCond;
             "Tag" = "PropertyCondition"
         }
     }
@@ -86,7 +68,7 @@ Function New-UIAPropertyConditionArray
         }
         $CondArraySz = $CondArray.Length
         Write-Debug "Created Condition Array; Size = $CondArraySz"
-        Return $CondArray
+        Return , $CondArray
     }
 
     End

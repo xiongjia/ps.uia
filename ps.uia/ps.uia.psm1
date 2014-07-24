@@ -5,11 +5,11 @@ Write-Debug "Loading ps.uia"
 . $PSScriptRoot\misc.ps1
 
 # Initialize MS UIAutomation
-$script:uia_init = $false
-if ($script:uia_init -eq $false) 
+$script:UIA_INIT = $false
+if ($script:UIA_INIT -eq $false) 
 {
     Initialize-UIAutomation
-    $script:uia_init = $true
+    $script:UIA_INIT = $true
 }
 
 # Load our .ps1 files
@@ -22,13 +22,16 @@ Write-Debug "Loads ps.uia script files"
 # export functions
 Write-Debug "Exports ps.uia functions"
 
-# conditions
+# condition
 Export-ModuleMember -Function New-UIAPropertyCondition
 Export-ModuleMember -Function New-UIAPropertyConditionArray
 Export-ModuleMember -Function New-UIAAndCondition
+
 # element
 Export-ModuleMember -Function Get-UIARootElement
 Export-ModuleMember -Function Find-UIAFirstElement
+Export-ModuleMember -Function Find-UIAAllElements
+
 # pattern
 Export-ModuleMember -Function Get-UIAElementPattern
 

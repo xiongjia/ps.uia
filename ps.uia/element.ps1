@@ -37,24 +37,24 @@ Function Find-UIAFirstElement
 
     Begin
     {
-        Write-Debug "[begin] Find UIAElements"
+        Write-Debug "[begin] Find first UIAElement"
         if ($ParentElement -eq $null)
         {
             Write-Debug "Parent Element is null and set the root element"
             $ParentElement = Get-UIARootElement
         }
+        $UIATreeScope = Get-UIATreeScope -TreeScope $TreeScope
     }
  
     Process
     {
-        $UIATreeScope = Get-UIATreeScope -TreeScope $TreeScope
         $UIAElement = $ParentElement.Raw.Value.FindFirst(
             $UIATreeScope.Raw.Value,
             $Condition.Raw.Value
         )
         if ($UIAElement -eq $null)
         {
-            Write-Error "UI automation cannot find an element."
+            Write-Error "UIAutomation cannot find an element."
             return $null
         }
         Return @{
@@ -65,7 +65,68 @@ Function Find-UIAFirstElement
 
     End
     {
-        Write-Debug "[end] Find UIAElements"
+        Write-Debug "[end] Find first UIAElement"
+    }
+}
+
+Function Find-UIAAllElements
+{
+    Param(
+        [hashTable]$ParentElement = $null,
+		[parameter(Mandatory = $true)]
+        [hashTable]$Condition = $null,
+        [ValidateSet("Element", "Children", "Descendants", "Subtree")]
+        [string]$TreeScope = "Subtree"
+    )
+
+    Begin
+    {
+        Write-Debug "[begin] Find all UIAElements"
+        if ($ParentElement -eq $null)
+        {
+            Write-Debug "Parent Element is null and set the root element"
+            $ParentElement = Get-UIARootElement
+        }
+        $UIATreeScope = Get-UIATreeScope -TreeScope $TreeScope
+    }
+
+    Process
+    {
+        $UIAElements = $ParentElement.Raw.Value.FindAll(
+            $UIATreeScope.Raw.Value,
+            $Condition.Raw.Value
+        )
+        if ($UIAElements -eq $null)
+        {
+            Write-Error "UIAutomation cannot find any element."
+            Return $null
+        }
+
+        $UIAElementsCnt = $UIAElements.Count
+        Write-Debug "Find UIA Elements; Count = $UIAElementsCnt"
+        if ($UIAElements.Count -le 0)
+        {
+            Write-Error "UIAutomation cannot find any element."
+            Return $null
+        }
+
+        $RetElements = @()
+        foreach ($UIAElement in $UIAElements)
+        {
+            $RetElements += @{
+                "Raw" = [ref]$UIAElement;
+                "Tag" = "UIAElement"
+            }
+        }
+
+        $RetElementsSz = $RetElements.Length
+        Write-Debug "Return UIA Elements Size = $RetElementsSz"
+        Return , $RetElements
+    }
+
+    End
+    {
+        Write-Debug "[end] Find all UIAElements"
     }
 }
 
