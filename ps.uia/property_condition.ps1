@@ -45,7 +45,14 @@ Function New-UIAPropertyConditionArray
     {
         Write-Debug "[begin] New UIA property condition array"
         $PropKeys = $Properties.Keys
-        Write-Debug "property keys = $PropKeys"
+        $PropCount = $properties.Keys.Count
+        Write-Debug "property keys = $PropKeys, Count = $PropCount"
+        if ($PropCount -le 0)
+        {
+            Write-Error -Message "Invalid Properties" `
+                -Category InvalidArgument `
+                -ErrorAction Stop
+        }
     }
 
     Process

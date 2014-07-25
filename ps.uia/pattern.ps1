@@ -1,29 +1,39 @@
 # pattern.ps1
 
-Function Get-UIAElementPattern
+Function Get-UIAElementSupportedPatterns
 {
     Param(
         [parameter(Mandatory = $true)]
-        [hashtable]$Element,
-        [ValidateSet("InvokePattern")]
-        [string]$Pattern
+        [hashtable]$Element
     )
 
     Begin
     {
-        Write-Debug "[begin] Get UIA Pattern; Pattern = $Pattern"
+        Write-Debug "[begin] Get UIA Element Supported Patterns"
+        $ElementRef = $Element.Raw.Value
     }
 
     Process
     {
-        $UIAPattern = [Windows.Automation.InvokePattern]::Pattern
-        $data = $Element.Raw.Value.GetCurrentPattern($UIAPattern)
-        Return [ref]$data
+        $AllPatterns = @{}
+        $SupportedPatterns = $ElementRef.GetSupportedPatterns()
+        foreach ($SupportedPattern in $SupportedPatterns)
+        {
+            # Update ProgrammaticName
+            $ProgrammaticName = $SupportedPattern.ProgrammaticName
+            $ProgrammaticName = $ProgrammaticName.Split(".")[0]
+            $ProgrammaticName = $ProgrammaticName -replace "Identifiers$", ""
+
+            Write-Debug "Adding $ProgrammaticName Pattern"
+            $ElementPattern = $ElementRef.GetCurrentPattern($SupportedPattern)
+            $AllPatterns.Add($ProgrammaticName, $ElementPattern)
+        }
+        Return $AllPatterns
     }
 
     End
     {
-        Write-Debug "[end] Get UIA Pattern"
+        Write-Debug "[end] Get UIA Element Supported Patterns"
     }
 }
 
