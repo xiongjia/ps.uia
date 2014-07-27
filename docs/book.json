@@ -1,0 +1,19 @@
+{
+    "title": "PS.UIA",
+    "description": "PS.UIA = PowerShell + UIAutomation",
+    "plugins": [],
+    "github": false,
+    "links": {
+        "home": "false",
+        "about": false,
+        "issues": false,
+        "contribute": false,
+        "gitbook": false,
+        "sharing": {
+            "google": false,
+            "facebook": false,
+            "twitter": false
+        }
+    }
+}
+
