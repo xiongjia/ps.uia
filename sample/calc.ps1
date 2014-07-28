@@ -4,9 +4,9 @@
 # A simple sample for access the MS UIAutomation in PowerShell.
 # In this sample:
 # 1. Launch the AUT ( calc.exe )
-# 2. Find the AutomationElement via the Process Id
+# 2. Find the Calculator Window via the ProcessId & Name property.
 # 3. Find buttons via 'ClassName' and 'Name' property
-# 4. Click the '1', '+', '1', '=' buttons.
+# 4. Click the '1', '+', '1', '=' buttons via the InvokePattern
 # At last, we will get '2' in the result of calc App.
 
 # Launch the calc.exe & sleep 10 seconds for wait the process start
