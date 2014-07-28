@@ -11,26 +11,42 @@
 
 # Launch the calc.exe & sleep 10 seconds for wait the process start
 Write-Host "Launching the AUT ( calc.exe )"
-$autProc = Start-Process calc -PassThru
-Start-Sleep -s 10
+$CalcProc = Start-Process calc -PassThru
+Start-Sleep -s 5
+
+# Find the Calculator window
+$FindCond = New-UIAPropertyConditionArray -Properties `
+                @{ "ProcessId"=$CalcProc.Id; "Name"="Calculator" }
+
+$CalcWnd = Find-UIAFirstElement -TreeScope Children -Condition `
+            (New-UIAAndCondition -PropertyConditionArray $FindCond)
 
 
-$aut = Get-UIAProcRootElement -processId $autProc.Id
+# Find buttons on the Calculator window
+$FindCond = New-UIAPropertyConditionArray -Properties `
+                @{ "ClassName"="Button"; "Name"="1" }
+$ElementBtn1 = Find-UIAFirstElement -ParentElement $CalcWnd -Condition `
+                (New-UIAAndCondition -PropertyConditionArray $FindCond)
+$ElementBtn1Patterns = Get-UIAElementSupportedPatterns -Element $ElementBtn1
 
-$btn1Element = Find-UIAFirstElement -element $aut -className "Button" -name "1"
-$btnPlusElement = Find-UIAFirstElement -element $aut -className "Button" -name "+"
-$btnEqualElement = Find-UIAFirstElement -element $aut -className "Button" -name "="
+$FindCond = New-UIAPropertyConditionArray -Properties `
+                @{ "ClassName"="Button"; "Name"="+" }
+$ElementBtnPlus = Find-UIAFirstElement -ParentElement $CalcWnd -Condition `
+                    (New-UIAAndCondition -PropertyConditionArray $FindCond)
+$ElementBtnPlusPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnPlus
+
+$FindCond = New-UIAPropertyConditionArray -Properties `
+                @{ "ClassName"="Button"; "Name"="+" }
+$ElementBtnEqual = Find-UIAFirstElement -ParentElement $CalcWnd -Condition `
+                    (New-UIAAndCondition -PropertyConditionArray $FindCond)
+$ElementBtnEqualPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnEqual
 
 # Click the buttons
 Write-Host "Clicking the buttons"
-$btn1Element.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
+$ElementBtn1Patterns.InvokePattern.Invoke()
+$ElementBtnPlusPatterns.InvokePattern.Invoke()
+$ElementBtn1Patterns.InvokePattern.Invoke()
+$ElementBtnEqualPatterns.InvokePattern.Invoke()
 Start-Sleep -s 1
-$btnPlusElement.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
-Start-Sleep -s 1
-$btn1Element.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
-Start-Sleep -s 1
-$btnEqualElement.GetCurrentPattern([Windows.Automation.InvokePattern]::Pattern).Invoke()
-Start-Sleep -s 1
- 
-Write-Host "Finished. Please check the results on the AUT."
+Write-Host "Finished. Please check the results on the Calculator Window"
 
