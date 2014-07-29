@@ -6,6 +6,7 @@ Function Get-UIAElementProperty
 {
     Param(
         [parameter(Mandatory = $true)]
+        [Alias("PropName")]
         [string]$PropertyName = $null,
         [parameter(Mandatory = $true)]
         [hashtable]$Element

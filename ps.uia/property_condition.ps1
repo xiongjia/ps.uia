@@ -6,8 +6,10 @@ Function New-UIAPropertyCondition
 {
     Param(
         [parameter(Mandatory = $true)]
+        [Alias("Name")]
         [string]$PropertyName,
         [parameter(Mandatory = $true)]
+        [Alias("Value")]
         [System.Object]$PropertyValue = $null
     )
 
@@ -38,6 +40,7 @@ Function New-UIAPropertyConditionArray
 {
     Param(
         [parameter(Mandatory = $true)]
+        [Alias("Props")]
         [hashtable]$Properties
     )
 

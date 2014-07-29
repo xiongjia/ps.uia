@@ -4,6 +4,7 @@ Function New-UIAAndCondition
 {
     Param(
 		[parameter(Mandatory = $true)]
+        [Alias("PropsCond")]
         [array]$PropertyConditionArray = @()
     )
 
@@ -45,6 +46,7 @@ Function New-UIAOrCondition
 {
     Param(
 		[parameter(Mandatory = $true)]
+        [Alias("PropsCond")]
         [array]$PropertyConditionArray = @()
     )
 
@@ -86,6 +88,7 @@ Function New-UIANotCondition
 {
     Param(
 		[parameter(Mandatory = $true)]
+        [Alias("PropCond")]
         [hashtable]$PropertyCondition = $null
     )
 

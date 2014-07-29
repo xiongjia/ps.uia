@@ -30,8 +30,10 @@ Function Find-UIAFirstElement
     Param(
         [hashTable]$ParentElement = $null,
 		[parameter(Mandatory = $true)]
+        [Alias("Cond")]
         [hashTable]$Condition = $null,
         [ValidateSet("Element", "Children", "Descendants", "Subtree")]
+        [Alias("Scope")]
         [string]$TreeScope = "Subtree"
     )
 
@@ -74,8 +76,10 @@ Function Find-UIAAllElements
     Param(
         [hashTable]$ParentElement = $null,
 		[parameter(Mandatory = $true)]
+        [Alias("Cond")]
         [hashTable]$Condition = $null,
         [ValidateSet("Element", "Children", "Descendants", "Subtree")]
+        [Alias("Scope")]
         [string]$TreeScope = "Subtree"
     )
 

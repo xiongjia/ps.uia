@@ -70,6 +70,7 @@ Function Get-UIATreeScope
     Param(
         [parameter(Mandatory = $true)]
         [ValidateSet("Element", "Children", "Descendants", "Subtree")]
+        [Alias("Scope")]
         [string]$TreeScope = "Subtree"
     )
 
@@ -151,6 +152,7 @@ Function Get-UIAProperty
 {
     Param(
         [parameter(Mandatory = $true)]
+        [Alias("Prop")]
         [string]$Property
     )
 
