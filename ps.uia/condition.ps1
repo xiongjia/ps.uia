@@ -1,15 +1,30 @@
 # condition.ps1
 
+. $PSScriptRoot\property_condition.ps1
+
 Function New-UIAAndCondition
 {
     Param(
-		[parameter(Mandatory = $true)]
         [Alias("PropsCond")]
-        [array]$PropertyConditionArray = @()
+        [array]$PropertyConditionArray = $null,
+        [Alias("Props")]
+        [hashtable]$Properties = @{}
     )
 
     Begin
     {
+        if ($PropertyConditionArray -eq $null)
+        {
+            $PropertyConditionArray = New-UIAPropertyConditionArray `
+                -Properties $Properties 
+        }
+        if ($PropertyConditionArray -eq $null)
+        {
+           Write-Error -Message "Invalid Property Condition Array" `
+                       -Category InvalidArgument `
+                       -ErrorAction Stop
+        }
+ 
         $ArraySz = $PropertyConditionArray.Length
         Write-Debug "[begin] New UIA And Condition (Size = $ArraySz)"
         if ($ArraySz -le 0)
@@ -45,13 +60,26 @@ Function New-UIAAndCondition
 Function New-UIAOrCondition
 {
     Param(
-		[parameter(Mandatory = $true)]
         [Alias("PropsCond")]
-        [array]$PropertyConditionArray = @()
+        [array]$PropertyConditionArray = $null,
+        [Alias("Props")]
+        [hashtable]$Properties = @{}
     )
 
     Begin
     {
+        if ($PropertyConditionArray -eq $null)
+        {
+            $PropertyConditionArray = New-UIAPropertyConditionArray `
+                -Properties $Properties 
+        }
+        if ($PropertyConditionArray -eq $null)
+        {
+           Write-Error -Message "Invalid Property Condition Array" `
+                       -Category InvalidArgument `
+                       -ErrorAction Stop
+        }
+
         $ArraySz = $PropertyConditionArray.Length
         Write-Debug "[begin] New UIA Or Condition (Size = $ArraySz)"
         if ($ArraySz -le 0)

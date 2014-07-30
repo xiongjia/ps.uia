@@ -15,30 +15,24 @@ $CalcProc = Start-Process calc -PassThru
 Start-Sleep -s 5
 
 # Find the Calculator window
-$FindCond = New-UIAPropertyConditionArray -Properties `
-                @{ "ProcessId"=$CalcProc.Id; "Name"="Calculator" }
-
-$CalcWnd = Find-UIAFirstElement -TreeScope Children -Condition `
-            (New-UIAAndCondition -PropertyConditionArray $FindCond)
+$CalcWnd = Find-UIAFirstElement -Scope Children -Cond `
+            (New-UIAAndCondition -Props @{ "ProcessId"=$CalcProc.Id; "Name"="Calculator" })
 
 
 # Find buttons on the Calculator window
-$FindCond = New-UIAPropertyConditionArray -Properties `
-                @{ "ClassName"="Button"; "Name"="1" }
-$ElementBtn1 = Find-UIAFirstElement -ParentElement $CalcWnd -Condition `
-                (New-UIAAndCondition -PropertyConditionArray $FindCond)
+$ElementBtn1 = Find-UIAFirstElement -Parent $CalcWnd -Cond `
+                (New-UIAAndCondition -Props @{ "ClassName"="Button"; "Name"="1" })
+
 $ElementBtn1Patterns = Get-UIAElementSupportedPatterns -Element $ElementBtn1
 
-$FindCond = New-UIAPropertyConditionArray -Properties `
-                @{ "ClassName"="Button"; "Name"="+" }
-$ElementBtnPlus = Find-UIAFirstElement -ParentElement $CalcWnd -Condition `
-                    (New-UIAAndCondition -PropertyConditionArray $FindCond)
+$ElementBtnPlus = Find-UIAFirstElement -Parent $CalcWnd -Cond `
+                    (New-UIAAndCondition -Props @{ "ClassName"="Button"; "Name"="+" })
+
 $ElementBtnPlusPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnPlus
 
-$FindCond = New-UIAPropertyConditionArray -Properties `
-                @{ "ClassName"="Button"; "Name"="+" }
-$ElementBtnEqual = Find-UIAFirstElement -ParentElement $CalcWnd -Condition `
-                    (New-UIAAndCondition -PropertyConditionArray $FindCond)
+$ElementBtnEqual = Find-UIAFirstElement -Parent $CalcWnd -Cond `
+                    (New-UIAAndCondition -Props @{ "ClassName"="Button"; "Name"="+" })
+
 $ElementBtnEqualPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnEqual
 
 # Click the buttons

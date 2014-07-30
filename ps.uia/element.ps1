@@ -28,6 +28,7 @@ Function Get-UIARootElement
 Function Find-UIAFirstElement
 {
     Param(
+        [Alias("Parent")]
         [hashTable]$ParentElement = $null,
 		[parameter(Mandatory = $true)]
         [Alias("Cond")]
@@ -74,6 +75,7 @@ Function Find-UIAFirstElement
 Function Find-UIAAllElements
 {
     Param(
+        [Alias("Parent")]
         [hashTable]$ParentElement = $null,
 		[parameter(Mandatory = $true)]
         [Alias("Cond")]
