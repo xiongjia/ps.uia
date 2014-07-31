@@ -1,6 +1,7 @@
 # element.ps1
 
 . $PSScriptRoot\misc.ps1
+. $PSScriptRoot\condition.ps1
 
 Function Get-UIARootElement
 {
@@ -30,9 +31,12 @@ Function Find-UIAFirstElement
     Param(
         [Alias("Parent")]
         [hashTable]$ParentElement = $null,
-		[parameter(Mandatory = $true)]
         [Alias("Cond")]
         [hashTable]$Condition = $null,
+        [Alias("AndCond")]
+        [hashTable]$AndCondition = $null,
+        [Alias("OrCond")]
+        [hashTable]$OrCondition = $null,
         [ValidateSet("Element", "Children", "Descendants", "Subtree")]
         [Alias("Scope")]
         [string]$TreeScope = "Subtree"
@@ -40,6 +44,24 @@ Function Find-UIAFirstElement
 
     Begin
     {
+        if ($Condition -eq $null) 
+        {
+            if ($AndCondition)
+            {
+                $Condition = New-UIAAndCondition -Props $AndCondition
+            }
+            elseif ($OrCondition)
+            {
+                $Condition = New-UIAOrCondition -Props $OrCondition
+            }
+        }
+        if ($Condition -eq $null)
+        {
+           Write-Error -Message "Invalid Condition" `
+                       -Category InvalidArgument `
+                       -ErrorAction Stop
+        }
+
         Write-Debug "[begin] Find first UIAElement"
         if ($ParentElement -eq $null)
         {
@@ -77,9 +99,12 @@ Function Find-UIAAllElements
     Param(
         [Alias("Parent")]
         [hashTable]$ParentElement = $null,
-		[parameter(Mandatory = $true)]
         [Alias("Cond")]
         [hashTable]$Condition = $null,
+        [Alias("AndCond")]
+        [hashTable]$AndCondition = $null,
+        [Alias("OrCond")]
+        [hashTable]$OrCondition = $null,
         [ValidateSet("Element", "Children", "Descendants", "Subtree")]
         [Alias("Scope")]
         [string]$TreeScope = "Subtree"
@@ -87,6 +112,24 @@ Function Find-UIAAllElements
 
     Begin
     {
+        if ($Condition -eq $null) 
+        {
+            if ($AndCondition)
+            {
+                $Condition = New-UIAAndCondition -Props $AndCondition
+            }
+            elseif ($OrCondition)
+            {
+                $Condition = New-UIAOrCondition -Props $OrCondition
+            }
+        }
+        if ($Condition -eq $null)
+        {
+           Write-Error -Message "Invalid Condition" `
+                       -Category InvalidArgument `
+                       -ErrorAction Stop
+        }
+
         Write-Debug "[begin] Find all UIAElements"
         if ($ParentElement -eq $null)
         {

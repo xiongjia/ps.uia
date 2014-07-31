@@ -15,24 +15,23 @@ $CalcProc = Start-Process calc -PassThru
 Start-Sleep -s 5
 
 # Find the Calculator window
-$CalcWnd = Find-UIAFirstElement -Scope Children -Cond `
-            (New-UIAAndCondition -Props @{ "ProcessId"=$CalcProc.Id; "Name"="Calculator" })
+$CalcWnd = Find-UIAFirstElement -Scope Children `
+    -AndCond @{ "ProcessId"=$CalcProc.Id; "Name"="Calculator" }
 
 
 # Find buttons on the Calculator window
-$ElementBtn1 = Find-UIAFirstElement -Parent $CalcWnd -Cond `
-                (New-UIAAndCondition -Props @{ "ClassName"="Button"; "Name"="1" })
+$ElementBtn1 = Find-UIAFirstElement -Parent $CalcWnd `
+    -AndCond @{ "ClassName"="Button"; "Name"="1" }
 
+$ElementBtnPlus = Find-UIAFirstElement -Parent $CalcWnd `
+    -AndCond @{ "ClassName"="Button"; "Name"="+" }
+
+$ElementBtnEqual = Find-UIAFirstElement -Parent $CalcWnd `
+    -AndCond @{ "ClassName"="Button"; "Name"="+" }
+
+# Get element patterns
 $ElementBtn1Patterns = Get-UIAElementSupportedPatterns -Element $ElementBtn1
-
-$ElementBtnPlus = Find-UIAFirstElement -Parent $CalcWnd -Cond `
-                    (New-UIAAndCondition -Props @{ "ClassName"="Button"; "Name"="+" })
-
 $ElementBtnPlusPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnPlus
-
-$ElementBtnEqual = Find-UIAFirstElement -Parent $CalcWnd -Cond `
-                    (New-UIAAndCondition -Props @{ "ClassName"="Button"; "Name"="+" })
-
 $ElementBtnEqualPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnEqual
 
 # Click the buttons
