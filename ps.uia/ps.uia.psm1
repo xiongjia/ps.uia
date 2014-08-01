@@ -40,5 +40,5 @@ Export-ModuleMember -Function Get-UIAElementProperty
 Export-ModuleMember -Function Get-UIAElementAllProperties
 
 # pattern
-Export-ModuleMember -Function Get-UIAElementSupportedPatterns
+Export-ModuleMember -Function Get-UIASupportedPatterns
 

@@ -30,9 +30,9 @@ $ElementBtnEqual = Find-UIAFirstElement -Parent $CalcWnd `
     -AndCond @{ "ClassName"="Button"; "Name"="+" }
 
 # Get element patterns
-$ElementBtn1Patterns = Get-UIAElementSupportedPatterns -Element $ElementBtn1
-$ElementBtnPlusPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnPlus
-$ElementBtnEqualPatterns = Get-UIAElementSupportedPatterns -Element $ElementBtnEqual
+$ElementBtn1Patterns = Get-UIASupportedPatterns -Element $ElementBtn1
+$ElementBtnPlusPatterns = Get-UIASupportedPatterns -Element $ElementBtnPlus
+$ElementBtnEqualPatterns = Get-UIASupportedPatterns -Element $ElementBtnEqual
 
 # Click the buttons
 Write-Host "Clicking the buttons"

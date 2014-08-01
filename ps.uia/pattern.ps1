@@ -1,6 +1,6 @@
 # pattern.ps1
 
-Function Get-UIAElementSupportedPatterns
+Function Get-UIASupportedPatterns
 {
     Param(
         [parameter(Mandatory = $true)]
