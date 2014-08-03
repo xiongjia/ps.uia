@@ -4,8 +4,8 @@
 # A simple sample for access the MS UIAutomation in PowerShell.
 # In this sample:
 # 1. Launch the AUT ( calc.exe )
-# 2. Find the Calculator Window via the ProcessId & Name property.
-# 3. Find buttons via 'ClassName' and 'Name' property
+# 2. Find the Calculator Window via the ProcessId & Name properties.
+# 3. Find buttons via ClassName and Name properties 
 # 4. Click the '1', '+', '1', '=' buttons via the InvokePattern
 # At last, we will get '2' in the result of calc App.
 
@@ -20,26 +20,26 @@ $CalcWnd = Find-UIAFirstElement -Scope Children `
 
 
 # Find buttons on the Calculator window
-$ElementBtn1 = Find-UIAFirstElement -Parent $CalcWnd `
+$Btn1 = Find-UIAFirstElement -Parent $CalcWnd `
     -AndCond @{ "ClassName"="Button"; "Name"="1" }
 
-$ElementBtnPlus = Find-UIAFirstElement -Parent $CalcWnd `
+$BtnPlus = Find-UIAFirstElement -Parent $CalcWnd `
     -AndCond @{ "ClassName"="Button"; "Name"="+" }
 
-$ElementBtnEqual = Find-UIAFirstElement -Parent $CalcWnd `
+$BtnEqual = Find-UIAFirstElement -Parent $CalcWnd `
     -AndCond @{ "ClassName"="Button"; "Name"="+" }
 
 # Get element patterns
-$ElementBtn1Patterns = Get-UIASupportedPatterns -Element $ElementBtn1
-$ElementBtnPlusPatterns = Get-UIASupportedPatterns -Element $ElementBtnPlus
-$ElementBtnEqualPatterns = Get-UIASupportedPatterns -Element $ElementBtnEqual
+$Btn1Patterns = Get-UIASupportedPatterns -Element $Btn1
+$BtnPlusPatterns = Get-UIASupportedPatterns -Element $BtnPlus
+$BtnEqualPatterns = Get-UIASupportedPatterns -Element $BtnEqual
 
 # Click the buttons
 Write-Host "Clicking the buttons"
-$ElementBtn1Patterns.InvokePattern.Invoke()
-$ElementBtnPlusPatterns.InvokePattern.Invoke()
-$ElementBtn1Patterns.InvokePattern.Invoke()
-$ElementBtnEqualPatterns.InvokePattern.Invoke()
+$Btn1Patterns.InvokePattern.Invoke()
+$BtnPlusPatterns.InvokePattern.Invoke()
+$Btn1Patterns.InvokePattern.Invoke()
+$BtnEqualPatterns.InvokePattern.Invoke()
 Start-Sleep -s 1
 Write-Host "Finished. Please check the results on the Calculator Window"
 
