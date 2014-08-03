@@ -12,7 +12,7 @@
 # Launch the calc.exe & sleep 10 seconds for wait the process start
 Write-Host "Launching the AUT ( calc.exe )"
 $CalcProc = Start-Process calc -PassThru
-Start-Sleep -s 5
+Start-Sleep -s 1
 
 # Find the Calculator window
 $CalcWnd = Find-UIAFirstElement -Scope Children `
