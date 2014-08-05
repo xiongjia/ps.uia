@@ -8,7 +8,7 @@ PS.UIA = PowerShell + UIAutomation
   Microsoft UI Automation is the new accessibility framework for Microsoft Windows, 
   available on all operating systems that support Windows Presentation Foundation (WPF).
 
-PS.UIA is a **pure** Powershell script module help you access the Microsoft UIAutomation in Powershell.
+PS.UIA is a **pure** PowerShell script module help you access the Microsoft UIAutomation in PowerShell.
 
 ## Source code
 * [GitHub](https://github.com/xiongjia/ps.uia) 
@@ -70,3 +70,4 @@ Write-Host "Finished. Please check the results on the Calculator Window"
 
 * More 
   * [Installation](installation.md)
+
