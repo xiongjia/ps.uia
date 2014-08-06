@@ -1,8 +1,7 @@
 # Summary
 
 * [Installation](installation.md)
-* Usage
-  * [Search Element](find_element.md)
-  * [Pattern](find_element.md)
-* [Functions](functions.md)
-
+* [Element](element.md)
+* [Element Properties](element_prop.md)
+* [Pattern](pattern.md)
+* [Samples](samples.md)

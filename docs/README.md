@@ -13,7 +13,7 @@ PS.UIA is a **pure** PowerShell script module help you access the Microsoft UIAu
 ## Source code
 * [GitHub](https://github.com/xiongjia/ps.uia) 
 
-## Quick Start
+## Getting Started
 Below GIF Animation is a simple DEMO.
 
 ![DEMO](https://github.com/xiongjia/ps.uia/raw/master/sample/calc.gif)    
