@@ -10,8 +10,10 @@ XXX TBD
    XXX TBD
  * Scope
    XXX TBD
-
-* Search a set of Elements
+* Search a set of Elements   
   XXX TBD
-
+* Element properties  
+  XXX TBD
+* Examples   
+  XXX TBD 
 
