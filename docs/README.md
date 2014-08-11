@@ -18,9 +18,8 @@ Below GIF Animation is a simple DEMO.
 
 ![DEMO](https://github.com/xiongjia/ps.uia/raw/master/sample/calc.gif)    
 
-In this DEMO PowerShell script, 
-we open a "calc.exe" process 
-and click the '1', '+', '1', '=' buttons via the UIAutomation.     
+In this DEMO, the PowerShell script opens a "calc.exe" process 
+and click the *'1'*, *'+'*, *'1'*, *'='* buttons via the UIAutomation.     
 
 The following script is the full script. 
 You also can check the details in the [Source code Sample Folder](https://github.com/xiongjia/ps.uia/tree/master/sample)
@@ -30,7 +29,7 @@ You also can check the details in the [Source code Sample Folder](https://github
 # 1. Launch the AUT ( calc.exe )
 # 2. Find the Calculator Window via the ProcessId & Name properties.
 # 3. Find buttons via ClassName and Name properties 
-# 4. Click the '1', '+', '1', '=' buttons via the InvokePattern
+# 4. Click the '1'; '+'; '1'; '=' buttons via the InvokePattern
 # At last, we will get '2' in the result of calc App.
 
 # Launch the calc.exe & sleep 1 second for wait the process start
@@ -68,6 +67,8 @@ Start-Sleep -s 1
 Write-Host "Finished. Please check the results on the Calculator Window"
 ```
 
-* More 
+## More
   * [Installation](installation.md)
+  * [Element](element.md)
+  * [Pattern](pattern.md)
 
