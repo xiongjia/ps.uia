@@ -1,5 +1,5 @@
-## Install PowerShell module
-PS.UIA is a pure PowerShell script module. Therefore, we have below 2 options: 
+## Installation 
+PS.UIA is a pure PowerShell script module. You can use below options to install it.    
 * Option 1 - Copy the "ps.uia" folder to your PowerShell module folder.         
 ```ps1
 git clone https://github.com/xiongjia/ps.uia.git 
